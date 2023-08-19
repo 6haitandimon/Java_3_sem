@@ -1,7 +1,6 @@
 package bsu.rfct.course2.group6.boreyko;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class Tea extends Food{
