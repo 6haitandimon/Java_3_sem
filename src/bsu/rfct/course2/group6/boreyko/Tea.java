@@ -32,6 +32,7 @@ public class Tea extends Food{
             this.calories = color2calories.get(Color);
             color2count.put(color, color2count.get(Color) + 1);
             color = Color;
+            this.name = "Tea";
         }
     }
 

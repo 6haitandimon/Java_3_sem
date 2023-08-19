@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin/bsu/rfct/course2/group6/boreyko",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ]
+}

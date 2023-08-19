@@ -31,17 +31,18 @@ public class Cake extends Food{
             this.calories = icing2calories.get(Icing);
             icing2count.put(Icing, icing2count.get(Icing) + 1);
             icing = Icing;
+            this.name = "Cake";
         }
     }
 
-    public static int Amount(String color){
-        return icing2count.get(color);
+    public static int Amount(String icing){
+        return icing2count.get(icing);
     }
 
     @Override
     public String toString(){
-        return "Tea{" +
-        "color='" + icing + '\'' +
+        return "Cake{" +
+        "icing='" + icing + '\'' +
         ", calories=" + calories +
         '}';
     }
