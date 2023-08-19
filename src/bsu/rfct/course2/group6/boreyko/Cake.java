@@ -26,7 +26,7 @@ public class Cake extends Food{
         icing2calories.put(caramel, 300);
     }
 
-    public Cake(String Icing) throws InvalidColorException{
+    public Cake(String Icing) throws InvalidIcingException{
         if(icing2count.get(Icing) != null){
             this.calories = icing2calories.get(Icing);
             icing2count.put(Icing, icing2count.get(Icing) + 1);
