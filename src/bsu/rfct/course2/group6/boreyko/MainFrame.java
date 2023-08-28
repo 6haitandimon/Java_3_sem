@@ -5,9 +5,17 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,8 +31,13 @@ public class MainFrame extends JFrame {
         FORMULA
     }
 
-    private static final int WIDTH = 400;
+    private static final int WIDTH = 650;
     private static final int HEIGHT = 320;
+
+    private BufferedImage formula1;
+    private BufferedImage formula2;
+
+    private JLabel LablelForFormula;
 
     private JTextField textFieldX;
     private JTextField textFieldY;
@@ -34,6 +47,8 @@ public class MainFrame extends JFrame {
 
     private JTextField textFieldResult;
     private JLabel labelForMemory = new JLabel("0.0", 10);
+
+
 
     private ButtonGroup radioButtons = new ButtonGroup();
     private ButtonGroup radioButtons2 = new ButtonGroup();
@@ -54,8 +69,13 @@ public class MainFrame extends JFrame {
         JRadioButton button = new JRadioButton(buttonName);
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                if(Type == radioButtonsType.FORMULA)
+                if(Type == radioButtonsType.FORMULA){
                     MainFrame.this.formulaId = Id;
+                    if(Id == 1)
+                        LablelForFormula.setIcon(new ImageIcon(new ImageIcon(formula1).getImage().getScaledInstance(650, 60, java.awt.Image.SCALE_SMOOTH)));
+                    else
+                        LablelForFormula.setIcon(new ImageIcon(new ImageIcon(formula2).getImage().getScaledInstance(650, 60, java.awt.Image.SCALE_SMOOTH)));
+                }
                 else if(Type == radioButtonsType.MEMORY){
                     MainFrame.this.memoryId = Id;
                     labelForMemory.setText(Double.toString(memCell[Id]));
@@ -84,6 +104,21 @@ public class MainFrame extends JFrame {
         // Отцентрировать окно приложения на экране 
         setLocation((kit.getScreenSize().width - WIDTH)/2,
         (kit.getScreenSize().height - HEIGHT)/2);
+
+        try{
+            formula1 = ImageIO.read(new File("src/bsu/rfct/course2/group6/boreyko/pic/formula1.jpeg"));
+            formula2 = ImageIO.read(new File("src/bsu/rfct/course2/group6/boreyko/pic/formula2.jpeg"));
+        }catch (IOException e){
+            System.out.println("Image not found");
+        }
+        
+        LablelForFormula = new JLabel(new ImageIcon(new ImageIcon(formula1).getImage().getScaledInstance(650, 60, java.awt.Image.SCALE_SMOOTH)));
+
+        Box BoxForFormula = Box.createHorizontalBox();
+        BoxForFormula.add(Box.createHorizontalGlue()); 
+        BoxForFormula.add(LablelForFormula);
+        BoxForFormula.add(Box.createHorizontalGlue()); 
+
         Box hboxFormulaType = Box.createHorizontalBox();
         hboxFormulaType.add(Box.createHorizontalGlue()); 
         
@@ -228,7 +263,8 @@ public class MainFrame extends JFrame {
         hboxButtons.setBorder(
         BorderFactory.createLineBorder(Color.GREEN));
         // Связать области воедино в компоновке BoxLayout
-        Box contentBox = Box.createVerticalBox(); contentBox.add(Box.createVerticalGlue()); 
+        Box contentBox = Box.createVerticalBox(); contentBox.add(Box.createVerticalGlue());
+        contentBox.add(BoxForFormula); 
         contentBox.add(hboxFormulaType);
         contentBox.add(hboxVariables);
         contentBox.add(hBoxMem);
