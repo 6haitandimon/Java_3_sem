@@ -146,19 +146,19 @@ public class MainFrame extends JFrame {
         hboxVariables.setBorder(
         
         BorderFactory.createLineBorder(Color.RED)); 
-        hboxVariables.add(Box.createHorizontalGlue()); 
+        //hboxVariables.add(Box.createHorizontalGlue()); 
         hboxVariables.add(labelForX); 
         hboxVariables.add(Box.createHorizontalStrut(10)); 
         hboxVariables.add(textFieldX); 
-        hboxVariables.add(Box.createHorizontalStrut(100)); 
+        hboxVariables.add(Box.createHorizontalGlue()); 
         hboxVariables.add(labelForY); 
         hboxVariables.add(Box.createHorizontalStrut(10));
         hboxVariables.add(textFieldY); 
-        hboxVariables.add(Box.createHorizontalStrut(100)); 
+        hboxVariables.add(Box.createHorizontalGlue()); 
         hboxVariables.add(labelForZ); 
         hboxVariables.add(Box.createHorizontalStrut(10));
         hboxVariables.add(textFieldZ); 
-        hboxVariables.add(Box.createHorizontalGlue());
+        //hboxVariables.add(Box.createHorizontalGlue());
                     
         //Память
         Box hBoxMem = Box.createVerticalBox();
