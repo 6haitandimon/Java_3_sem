@@ -28,7 +28,7 @@ public class Sandwich extends Food{
 
     public Sandwich(String Filling1, String Filling2) throws InvalidFillingException{
         if(filling2count.get(Filling1) != null && filling2count.get(Filling2) != null){
-            this.calories = filling2calories.get(Filling1) + filling2count.get(Filling2);
+            this.calories = filling2calories.get(Filling1) + filling2calories.get(Filling2);
             filling2count.put(Filling1, filling2count.get(Filling1) + 1);
             filling2count.put(Filling2, filling2count.get(Filling2) + 1);
             filling = Filling1 + " " + Filling2;

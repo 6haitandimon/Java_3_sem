@@ -2,10 +2,14 @@ package bsu.rfct.course2.group6.boreyko;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-
+import java.util.Scanner;
+//Sandwich/Sausage/Cheese Tea/Black Cake/Chocolate
 public class Main {
     public static void main(String[] args) {
         boolean cals = Arrays.stream(args).anyMatch("-calories"::equals);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Input brackfast:");
+
         try{
             Food[] food = new Food[12];
 
@@ -16,36 +20,54 @@ public class Main {
             // }
             
             Class<Sandwich> sandwichClass = Sandwich.class;
-            Field filling1 = sandwichClass.getDeclaredField("sausage");
-            Field filling2 = sandwichClass.getDeclaredField("cheese");
-            Field filling3 = sandwichClass.getDeclaredField("butter");
+            //Field filling1 = sandwichClass.getDeclaredField("sausage");
+            //Field filling2 = sandwichClass.getDeclaredField("cheese");
+            //Field filling3 = sandwichClass.getDeclaredField("butter");
             
-            filling1.setAccessible(true);
-            filling2.setAccessible(true);
-            filling3.setAccessible(true);
+            //filling1.setAccessible(true);
+            //filling2.setAccessible(true);
+            //filling3.setAccessible(true);
+            
+            String buff = sc.nextLine();
+            String[] input = buff.split(" ");
+            int itemSoFar = 0;
+            for(String arg : input){
+                String[] parts = arg.split("/");
+                if(parts[0].equals("Sandwich")){
+                    food[itemSoFar] = new Sandwich(parts[1].toString(), parts[2].toString());
+                    itemSoFar++;
+                }
+                else if(parts[0].equals("Tea")){
+                    if(parts[1].equals("Black"))
+                        food[itemSoFar] = new Tea(Tea.black);
+                    else if(parts[1].equals("Green"))
+                        food[itemSoFar] = new Tea(Tea.green);
+                    else 
+                        food[itemSoFar] = new Tea(Tea.blue);
+                    itemSoFar++;
+                }
+                else if(parts[0].equals("Cake")){
+                    if(parts[1].equals("Caramel"))
+                        food[itemSoFar] = new Cake(Cake.caramel);
+                    else if(parts[1].equals("Chocolate"))
+                        food[itemSoFar] = new Cake(Cake.chocolate);
+                    else 
+                        food[itemSoFar] = new Cake(Cake.creamy);
+                    itemSoFar++;
+                }
+            }
 
-            food[0] = new Sandwich(filling1.get(sandwichClass).toString(), filling2.get(sandwichClass).toString());
-            food[1] = new Sandwich(filling2.get(sandwichClass).toString(), filling3.get(sandwichClass).toString());
-            food[2] = new Sandwich(filling1.get(sandwichClass).toString(), filling3.get(sandwichClass).toString());
-            food[3] = new Sandwich(filling1.get(sandwichClass).toString(), filling1.get(sandwichClass).toString());
-            food[4] = new Tea(Tea.black);
-            food[5] = new Tea(Tea.green);
-            food[6] = new Tea(Tea.blue);
-            food[7] = new Tea(Tea.blue);
-            food[8] = new Tea(Tea.blue);
-            food[9] = new Cake(Cake.caramel);
-            food[10] = new Cake(Cake.chocolate);
-            food[11] = new Cake(Cake.creamy);
-
-            Arrays.sort(food, (Food x, Food y) -> {
+            Arrays.sort(food, 0, itemSoFar, (Food x, Food y) -> {
                 return y.toString().length() - x.toString().length();
             });
 
             int sumCalories = 0;
-            for (int i = 0; i < 10; i++) {
-                int curCalories = food[i].CalculateCalories();
-                food[i].Consume();
-                sumCalories += curCalories;
+            for (int i = 0; i < itemSoFar; i++) {
+                if(food[i] != null){
+                    int curCalories = food[i].CalculateCalories();
+                    food[i].Consume();
+                    sumCalories += curCalories;
+                }
             }
             if (cals){
                 System.out.printf("Sum of calories: " + sumCalories);
