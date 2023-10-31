@@ -1,19 +1,25 @@
 {
     "configurations": [
-        
-    {
-        "type": "java",
-        "name": "Debug (Launch)",
-        "request": "launch",
-        "sourcePaths": [
-            ".",
-            "${fileDirname}"
-        ],
-        "cwd": "${workspaceFolder}",
-        "console": "internalConsole",
-        "stopOnEntry": false,
-        "mainClass": "",
-        "args": ""
-    }
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "bsu.rfct.course2.group6.boreyko.Main",
+            "projectName": "Java_3_sem_c0072299"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)",
+            "request": "launch",
+            "sourcePaths": [
+                ".",
+                "${fileDirname}"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "",
+            "args": ""
+        }
     ]
 }
