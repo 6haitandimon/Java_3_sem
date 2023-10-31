@@ -155,7 +155,7 @@ public class HornersScheme extends JFrame {
         hboxRange.add(textFieldStep);
         hboxRange.add(Box.createHorizontalGlue());
         hboxRange.setPreferredSize(new Dimension((int) hboxRange.getMaximumSize().getWidth(), (int) (hboxRange.getMinimumSize().getHeight()) * 2));
-        getContentPane().add(hboxRange, BorderLayout.NORTH);
+        getContentPane().add(hboxRange, BorderLayout.SOUTH);
         JButton buttonCalc = new JButton("Вычислить");
         buttonCalc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -200,7 +200,7 @@ public class HornersScheme extends JFrame {
         hboxButtons.add(buttonReset);
         hboxButtons.add(Box.createHorizontalGlue());
         hboxButtons.setPreferredSize(new Dimension((int) hboxButtons.getMaximumSize().getWidth(), (int) hboxButtons.getMinimumSize().getHeight() * 2));
-        getContentPane().add(hboxButtons, BorderLayout.SOUTH);
+        getContentPane().add(hboxButtons, BorderLayout.NORTH);
         hBoxResult = Box.createHorizontalBox();
         hBoxResult.add(new JPanel());
         getContentPane().add(hBoxResult, BorderLayout.CENTER);
